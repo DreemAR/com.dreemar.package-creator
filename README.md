@@ -1,4 +1,4 @@
-# Package Creation Tool
+# UPM Package Creation Tool
 A simple utility for generating new packages for use with Unity's [Package Manager](https://docs.unity3d.com/Manual/Packages.html).
 
 Automatically generates the following in a new [embedded package](https://docs.unity3d.com/Manual/CustomPackages.html#:~:text=Creating%20a%20new%20embedded%20package):
