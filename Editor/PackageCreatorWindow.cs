@@ -166,7 +166,7 @@ namespace Dreemar.PackageTool
             File.WriteAllText(Path.Combine(rootPath, "README.md"), $"# {_packageInfo.displayName}");
 
             // Create the package.json file from the package information
-            File.WriteAllText(Path.Combine(rootPath, "package.json"), JsonUtility.ToJson(_packageInfo, true));
+            File.WriteAllText(Path.Combine(rootPath, "package.json"), JsonUtility.ToJson(_packageInfo, true).Replace("    ", "  "));
 
             if (!string.IsNullOrEmpty(_runtimeAssembly.name))
             {
