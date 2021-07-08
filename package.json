@@ -1,0 +1,1 @@
+{"name":"com.dreemar.package-creator","version":"1.0.0","displayName":"Package Creator","unity":"2020.3","unityRelease":"","author":{"name":"Dreemar","email":"support@dreemar.com","url":"https://dreemar.com"},"description":"A simple utility for generating new packages for Unity's Package Manager.\nOpen the wizard via Tools->Create Package."}
