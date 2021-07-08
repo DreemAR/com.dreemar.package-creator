@@ -163,7 +163,7 @@ namespace Dreemar.PackageTool
             // Create empty markdown files
             File.Create(Path.Combine(rootPath, "Documentation~", $"{_packageInfo.name}.md"));
             File.Create(Path.Combine(rootPath, "CHANGELOG.md"));
-            File.Create(Path.Combine(rootPath, "README.md"));
+            File.WriteAllText(Path.Combine(rootPath, "README.md"), $"# {_packageInfo.name}");
 
             // Create the package.json file from the package information
             File.WriteAllText(Path.Combine(rootPath, "package.json"), JsonUtility.ToJson(_packageInfo, true));
