@@ -164,7 +164,7 @@ namespace Dreemar.PackageTool
             File.Create(Path.Combine(rootPath, "Documentation~", $"{_packageInfo.name}.md"));
             File.Create(Path.Combine(rootPath, "CHANGELOG.md"));
             File.Create(Path.Combine(rootPath, "README.md"));
-            
+
             // Create the package.json file from the package information
             File.WriteAllText(Path.Combine(rootPath, "package.json"), JsonUtility.ToJson(_packageInfo));
 
@@ -189,6 +189,8 @@ namespace Dreemar.PackageTool
             _runtimeAssembly = null;
             _editorAssembly = null;
             _editors = null;
+
+            //NOTE: I intentially don't generate a .gitignore since I can't think of anything that needs to be ignored by default.
 
             // Tell the package manager to resolve packages
             Client.Resolve();

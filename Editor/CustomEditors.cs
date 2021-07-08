@@ -57,7 +57,7 @@ namespace Dreemar.PackageTool
 
             // Draw the version code field
             // Looks like: [   ].[   ].[   ]
-            using(new EditorGUILayout.HorizontalScope())
+            using (new EditorGUILayout.HorizontalScope())
             {
                 EditorGUILayout.PrefixLabel("Version ");
                 GUILayout.Space(2);
@@ -74,7 +74,7 @@ namespace Dreemar.PackageTool
                         {
                             nVer[i] = versionSplit[i];
                             // Ensure each item has a value
-                            if(string.IsNullOrEmpty(nVer[i]))
+                            if (string.IsNullOrEmpty(nVer[i]))
                             {
                                 if (i == 0)
                                     nVer[i] = "1";
@@ -103,7 +103,7 @@ namespace Dreemar.PackageTool
                 for (int i = 0; i < versionSplit.Length; i++)
                 {
                     versionSplit[i] = EditorGUILayout.TextField(versionSplit[i]);
-                    if(i < versionSplit.Length - 1)
+                    if (i < versionSplit.Length - 1)
                         GUILayout.Label(".");
                 }
 
