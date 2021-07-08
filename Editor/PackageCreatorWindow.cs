@@ -143,15 +143,15 @@ namespace Dreemar.PackageTool
                 return;
             }
 
+            // Format the package name
+            _packageInfo.name = $"com.{_packageInfo.author.name.Replace(" ", "-")}.{_packageInfo.name}".ToLower();
+
             var rootPath = Path.Combine(Application.dataPath, "../", "Packages", _packageInfo.name);
             if (Directory.Exists(rootPath))
             {
                 Debug.LogError("Package already exists in Packages directory");
                 return;
             }
-
-            // Format the package name
-            _packageInfo.name = $"com.{_packageInfo.author.name.Replace(" ", "-")}.{_packageInfo.name}".ToLower();
 
             // Create directories
             Directory.CreateDirectory(rootPath);
