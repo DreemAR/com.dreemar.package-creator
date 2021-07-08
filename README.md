@@ -23,9 +23,7 @@ Unity 2020.3 or newer.
 ## Installation
 The package can be installed by following [Unity's instructions for installing via git url](https://docs.unity3d.com/Manual/upm-ui-giturl.html).
 
-You can use the following url to install the current version on the main branch: https://github.com/DreemAR/com.dreemar.package-creator
-
-Alternatively, you can use https://github.com/DreemAR/com.dreemar.package-creator#v1.0.0 to get the latest version. You can also target any previous releases that are available by replacing the version code at the end of the provided url.
+We recommend you use the latest version: https://github.com/DreemAR/com.dreemar.package-creator#v1.0.0. You can also target any previous releases that are available by replacing the version code at the end of the provided url.
 
 ## How to use
 Open the wizard via Tools->Create Package.
