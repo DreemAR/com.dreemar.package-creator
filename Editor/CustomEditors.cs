@@ -21,6 +21,8 @@ namespace Dreemar.PackageTool
     {
         SerializedProperty _name;
         SerializedProperty _version;
+        SerializedProperty _unity;
+        SerializedProperty _unityRelease;
 
         SerializedProperty _author;
         SerializedProperty _authorName;
@@ -31,6 +33,8 @@ namespace Dreemar.PackageTool
         {
             _name = serializedObject.FindProperty("name");
             _version = serializedObject.FindProperty("version");
+            _unity = serializedObject.FindProperty("unity");
+            _unityRelease = serializedObject.FindProperty("unityRelease");
 
             _author = serializedObject.FindProperty("author");
             _authorName = _author.FindPropertyRelative("name");
@@ -46,20 +50,21 @@ namespace Dreemar.PackageTool
             var labelColourDefault = EditorStyles.label.normal.textColor;
             // The first few elements we draw will be required, so draw them in red
             EditorStyles.label.normal.textColor = Color.red;
+            EditorStyles.label.hover.textColor = Color.red;
 
             // Draw the package name field
             using (new EditorGUILayout.HorizontalScope())
             {
-                _name.stringValue = EditorGUILayout.TextField("Name", _name.stringValue);
+                _name.stringValue = EditorGUILayout.TextField(new GUIContent("Name", "Name your new package! Spaces and hyphens will automatically be replaced with underscores."), _name.stringValue);
                 // Replace spaces with hyphens
-                _name.stringValue = _name.stringValue.Replace(" ", "-");
+                _name.stringValue = _name.stringValue.Replace(" ", "_").Replace("-", "_");
             }
 
             // Draw the version code field
             // Looks like: [   ].[   ].[   ]
             using (new EditorGUILayout.HorizontalScope())
             {
-                EditorGUILayout.PrefixLabel("Version ");
+                EditorGUILayout.PrefixLabel(new GUIContent("Version", "SymVer; <MAJOR.MINOR.PATCH>"));
                 GUILayout.Space(2);
 
                 string[] versionSplit = _version.stringValue.Split('.');
@@ -142,14 +147,23 @@ namespace Dreemar.PackageTool
                 EditorGUILayout.PropertyField(_authorEmail);
                 EditorGUILayout.PropertyField(_authorUrl);
 
+                // More elements may be required after
+                EditorStyles.label.normal.textColor = Color.red;
+
                 EditorGUI.indentLevel--;
             }
 
-            // Other elements are not required, revert to default label colour
+
+            EditorGUILayout.PropertyField(_unity);
+
+            // Revert to default label colour
             EditorStyles.label.normal.textColor = labelColourDefault;
+            EditorStyles.label.hover.textColor = labelColourDefault;
+
+            EditorGUILayout.PropertyField(_unityRelease);
 
             // Draw other fields with default editor fields
-            DrawPropertiesExcluding(serializedObject, "m_Script", "name", "version", "author");
+            DrawPropertiesExcluding(serializedObject, "m_Script", "name", "version", "author", "unity", "unityRelease");
 
             // TODO: Create a property drawer for the Unity Version field
             // (to emulate the one shown in the package.json inspector)

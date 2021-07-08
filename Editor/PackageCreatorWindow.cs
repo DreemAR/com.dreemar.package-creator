@@ -32,10 +32,12 @@ namespace Dreemar.PackageTool
         new public string name;
         public string version = "1.0.0";
         public string displayName;
+        [Tooltip("<MAJOR.MINOR> e.g. 2020.3")]
         public string unity;
+        [Tooltip("Patch release code e.g. 1b4")]
         public string unityRelease;
         public PackageAuthor author;
-        [Multiline]
+        [Multiline, Tooltip("Provide a brief description of your package.")]
         public string description;
     }
     #endregion
@@ -137,14 +139,14 @@ namespace Dreemar.PackageTool
         void CreatePackage()
         {
             if (string.IsNullOrEmpty(_packageInfo.name) || string.IsNullOrEmpty(_packageInfo.version) ||
-                string.IsNullOrEmpty(_packageInfo.author.name))
+                string.IsNullOrEmpty(_packageInfo.author.name) || string.IsNullOrEmpty(_packageInfo.unity))
             {
                 Debug.LogError("Required fields (marked in red) cannot be empty.");
                 return;
             }
 
             // Format the package name
-            _packageInfo.name = $"com.{_packageInfo.author.name.Replace(" ", "-")}.{_packageInfo.name}".ToLower();
+            _packageInfo.name = $"com.{_packageInfo.author.name.Replace(" ", "_")}.{_packageInfo.name}".ToLower();
 
             var rootPath = Path.Combine(Application.dataPath, "../", "Packages", _packageInfo.name);
             if (Directory.Exists(rootPath))
@@ -189,6 +191,7 @@ namespace Dreemar.PackageTool
             _runtimeAssembly = null;
             _editorAssembly = null;
             _editors = null;
+
 
             //NOTE: I intentially don't generate a .gitignore since I can't think of anything that needs to be ignored by default.
 
