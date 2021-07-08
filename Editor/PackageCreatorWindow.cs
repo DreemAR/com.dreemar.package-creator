@@ -166,12 +166,12 @@ namespace Dreemar.PackageTool
             File.Create(Path.Combine(rootPath, "README.md"));
 
             // Create the package.json file from the package information
-            File.WriteAllText(Path.Combine(rootPath, "package.json"), JsonUtility.ToJson(_packageInfo));
+            File.WriteAllText(Path.Combine(rootPath, "package.json"), JsonUtility.ToJson(_packageInfo, true));
 
             if (!string.IsNullOrEmpty(_runtimeAssembly.name))
             {
                 // Create runtime assembly
-                File.WriteAllText(Path.Combine(rootPath, "Runtime", $"{_runtimeAssembly.name}.asmdef"), JsonUtility.ToJson(_runtimeAssembly));
+                File.WriteAllText(Path.Combine(rootPath, "Runtime", $"{_runtimeAssembly.name}.asmdef"), JsonUtility.ToJson(_runtimeAssembly, true));
 
                 // Reference the runtime assembly in the editor. This will store as name and the user can opt to change it to use GUIDs once the package is generated.
                 _editorAssembly.references = new[] { _runtimeAssembly.name };
@@ -180,7 +180,7 @@ namespace Dreemar.PackageTool
             if (!string.IsNullOrEmpty(_editorAssembly.name))
             {
                 // Create runtime assembly
-                File.WriteAllText(Path.Combine(rootPath, "Editor", $"{_editorAssembly.name}.asmdef"), JsonUtility.ToJson(_editorAssembly));
+                File.WriteAllText(Path.Combine(rootPath, "Editor", $"{_editorAssembly.name}.asmdef"), JsonUtility.ToJson(_editorAssembly, true));
             }
 
             Debug.Log($"Successfully created new package: {_packageInfo.name}");
