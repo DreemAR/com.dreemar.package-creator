@@ -3,7 +3,7 @@ A simple utility for generating new packages for use with Unity's [Package Manag
 
 Automatically generates the following in a new [embedded package](https://docs.unity3d.com/Manual/CustomPackages.html#:~:text=Creating%20a%20new%20embedded%20package):
 * Folders:
-  * Documentation~*
+  * Documentation~
   * Editor
   * Runtime
   * Samples~
